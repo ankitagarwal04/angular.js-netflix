@@ -8,6 +8,7 @@
       <div ng-app="myApp" ng-controller="myCtrl">
       <!-- ankit navbar  above -->
       <form>
+         <!-- drop down created to decide the parameter for search -->
          Search By:
          <select ng-model="searchBy" >
             <option value="actor">Actor</option>
@@ -15,12 +16,15 @@
             <option value="director">Director</option>
          </select>
          {{searchBy|titlecase}} Name: <input type="text" ng-model="name">
+         <!--on click searchItem() is invoked present in controller file-->
          <button ng-click="searchItem()">search</button>
          <!--<h1>You entered: {{title}}</h1>-->
       </form>
+       <!-- to searchBy title, condition is checked -->
       <div class="container" style="" ng-if="!isArray &&isArray!=null">
          <div class="row" style="margin-top: 7%; background-color: #ffffff;" >
             <div style="color: #FFFFFF;background-color: #7a1ea1;padding: .6%" class="col-sm-12">
+               <!--response is retrieved from the controller in movie_details variable -->
                <h2 style="display: inline;">{{movie_details.show_title}}  ({{movie_details.release_year}})
                   <span style="font-size:18px;display: inline; position: absolute;right: 4%">Rating {{movie_details.rating}}</span>
                </h2>
@@ -40,6 +44,7 @@
                   <div class="row" ng-if="movie_details.director!=''">
                      <button type="button" class="btn btn-link" style="display:inline" ng-repeat="director in movie_details.director.split(',')" ng-click="searchByDirector(director)"> {{director}}</button>
                   </div>
+                  <!--if director is not returned by Netflix Api -->
                   <div ng-if="movie_details.director==''">
                      <h3 style="color:red">No director specified</h3>
                   </div>
@@ -52,11 +57,12 @@
             </div>
          </div>
       </div>
+      <!-- to searchBy director or actor, condition is checked -->
       <div ng-if="isArray &&isArray!=null">
-      <!-- sorting -->
+      <!-- client site sorting is done through title and release year -->
       Sort By: 
       <select ng-model="sortBy" >
-         <option selected ng-click="searchItem()" value="runtime">Runtime</option>
+         
          <option selected ng-click="searchItem()" value="show_title" name1="show_title">Title</option>
          <option selected ng-click="searchItem()" value="release_year">Release Year</option>
       </select>
@@ -94,6 +100,7 @@
             </div>
          </div>
       </div>
+       <!--client site pagination -->
       <div style="padding-left: 40%; padding-right: 20%" class="row">
          <ul class="pagination">
             <li ng-repeat="i in pageArray"><span ng-click="getPageData(i)">{{i}}</span></li>
