@@ -1,7 +1,7 @@
 //angular module is created
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function($scope, $http) {
-    $scope.name = "house of cards";
+    $scope.name = "";
     $scope.name1 = "";
     $scope.actor = "";
     $scope.searchBy = "title";
