@@ -2,7 +2,7 @@
 #A Movie Search Application
 
 Front-end framework used Angular.js
-Css Framework used Bootstrap
+tech stack: angular.js, html5, css3, bootstrap
 
 HOW TO RUN:
 1.)
