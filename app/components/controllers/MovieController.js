@@ -1,3 +1,4 @@
+//angular module is created
 var app = angular.module("myApp", []);
 app.controller("myCtrl", function($scope, $http) {
     $scope.name = "house of cards";
@@ -22,9 +23,11 @@ app.controller("myCtrl", function($scope, $http) {
         }
         console.log($scope.moviesPerPage);
     }
+    //searchItem function definition
     $scope.searchItem = function() {
 
         $scope.isArray = null;
+        //to set the pattern of the api url
         $searchvalue = $scope.name.replace(/ /g, "+");
         $http({
                 method: "GET",
@@ -42,6 +45,7 @@ app.controller("myCtrl", function($scope, $http) {
                     $scope.movie_details = response.data;
                     console.log($scope.movie_details);
                     console.log(response.data.length);
+                    // paging logic
                     $scope.page_number = Math.ceil(response.data.length / $scope.items_per_page);
                     for (i = 0; i < $scope.page_number; i++) {
                         $scope.pageArray.push(i + 1);
@@ -83,7 +87,7 @@ app.controller("myCtrl", function($scope, $http) {
             $scope.moviesPerPage = [];
             $scope.pageArray = [];
             $scope.page_number = null;
-
+            // paging logic
             $scope.page_number = Math.ceil(response.data.length / $scope.items_per_page);
             for (i = 0; i < $scope.page_number; i++) {
                 $scope.pageArray.push(i + 1);
@@ -113,7 +117,7 @@ app.controller("myCtrl", function($scope, $http) {
             $scope.moviesPerPage = [];
             $scope.pageArray = [];
             $scope.page_number = null;
-
+            // paging logic
             $scope.page_number = Math.ceil(response.data.length / $scope.items_per_page);
             for (i = 0; i < $scope.page_number; i++) {
                 $scope.pageArray.push(i + 1);
@@ -130,6 +134,8 @@ app.controller("myCtrl", function($scope, $http) {
     }
 
 });
+
+// created customised filter 'titlecase' 
 app.filter('titlecase', function() {
     return function(input) {
         var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\.?|via)$/i;
